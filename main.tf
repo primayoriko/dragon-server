@@ -24,6 +24,7 @@ resource "google_container_node_pool" "ta_playground_node_pool" {
         machine_type = local.machine_type
 
         oauth_scopes = [
+            "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/logging.write",
             "https://www.googleapis.com/auth/monitoring",
         ]
