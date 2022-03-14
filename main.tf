@@ -29,6 +29,11 @@ resource "google_container_node_pool" "ta_playground_node_pool" {
     auto_upgrade = false
   }
 
+  upgrade_settings {
+    max_surge = 0
+    max_unavailable = 1
+  }
+
   node_config {
     machine_type = local.node_machine_type
 
