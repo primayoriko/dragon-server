@@ -1,7 +1,7 @@
 resource "google_container_cluster" "ta_cluster" {
   name = "ta-cluster"
 
-  location                 = local.region
+  location                 = local.zone
   remove_default_node_pool = true
 
   min_master_version = "1.19.16-gke.6800"
@@ -14,9 +14,9 @@ resource "google_container_cluster" "ta_cluster" {
   }
 }
 
-resource "google_container_node_pool" "ta_playground_node_pool" {
+resource "google_container_node_pool" "ta_cluster_node_pool" {
   name     = "ta-cluster-node-pool"
-  location = local.region
+  location = local.zone
   cluster  = google_container_cluster.ta_cluster.name
 
   node_count = local.gke_nodes_num
