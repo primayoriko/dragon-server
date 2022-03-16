@@ -30,7 +30,7 @@ resource "google_container_node_pool" "ta_cluster_node_pool" {
   }
 
   upgrade_settings {
-    max_surge = 0
+    max_surge       = 0
     max_unavailable = 1
   }
 
