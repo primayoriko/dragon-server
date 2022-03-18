@@ -1,5 +1,5 @@
 resource "google_container_cluster" "ta_cluster" {
-  name = "ta-cluster"
+  name = "dragon-cluster"
 
   location                 = local.zone
   remove_default_node_pool = true
@@ -15,7 +15,7 @@ resource "google_container_cluster" "ta_cluster" {
 }
 
 resource "google_container_node_pool" "ta_cluster_node_pool" {
-  name     = "ta-cluster-node-pool"
+  name     = "dragon-cluster-node-pool"
   location = local.zone
   cluster  = google_container_cluster.ta_cluster.name
 
@@ -37,6 +37,9 @@ resource "google_container_node_pool" "ta_cluster_node_pool" {
   node_config {
     machine_type = local.node_machine_type
 
+    disk_size_gb = 12
+    disk_type    = "pd-standard"
+
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
       "https://www.googleapis.com/auth/logging.write",
@@ -49,8 +52,8 @@ resource "google_container_node_pool" "ta_cluster_node_pool" {
       env = local.project_id
     }
 
-    # metadata = {
-    #     disable-legacy-endpoints = "true"
-    # }
+    metadata = {
+      disable-legacy-endpoints = "true"
+    }
   }
 }
