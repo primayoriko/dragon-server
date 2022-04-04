@@ -1,4 +1,4 @@
-resource "google_container_cluster" "ta_cluster" {
+resource "google_container_cluster" "dragon_cluster" {
   name = "dragon-cluster"
 
   location                 = local.zone
@@ -14,10 +14,10 @@ resource "google_container_cluster" "ta_cluster" {
   }
 }
 
-resource "google_container_node_pool" "ta_cluster_node_pool" {
+resource "google_container_node_pool" "dragon_cluster_node_pool" {
   name     = "dragon-cluster-node-pool"
   location = local.zone
-  cluster  = google_container_cluster.ta_cluster.name
+  cluster  = google_container_cluster.dragon_cluster.name
 
   node_count = local.gke_nodes_num
   node_locations = [
