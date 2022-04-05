@@ -4,8 +4,8 @@ resource "google_container_cluster" "dragon_cluster" {
   location                 = local.zone
   remove_default_node_pool = true
 
-  min_master_version = "1.19.16-gke.6800"
-  node_version       = "1.19.16-gke.6800"
+  min_master_version = local.kubernetes_version
+  node_version       = local.kubernetes_version
 
   initial_node_count = local.gke_nodes_num
 
@@ -15,9 +15,10 @@ resource "google_container_cluster" "dragon_cluster" {
 }
 
 resource "google_container_node_pool" "dragon_cluster_node_pool" {
-  name     = "dragon-cluster-node-pool"
-  location = local.zone
+  name = "dragon-cluster-node-pool"
+
   cluster  = google_container_cluster.dragon_cluster.name
+  location = local.zone
 
   node_count = local.gke_nodes_num
   node_locations = [
