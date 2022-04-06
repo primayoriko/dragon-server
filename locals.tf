@@ -6,5 +6,5 @@ locals {
   gke_nodes_num     = 3
   node_machine_type = "e2-standard-4"
 
-  kubernetes_version = "1.19.16-gke.6800"
+  kubernetes_version = "1.19.16-gke.11000"
 }
